@@ -39,6 +39,7 @@ body {
   letter-spacing: 0.0625em;
   line-height: 1.6;
   overflow-x: hidden;
+  max-width: 100%;
   color: var(--dark);
 }
 
@@ -1011,3 +1012,7 @@ document.addEventListener('DOMContentLoaded', function() {
   revealOnScroll();
 });
 */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
