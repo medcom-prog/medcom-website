@@ -182,4 +182,20 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }
   });
+  document.addEventListener("DOMContentLoaded", () => {
+    const nav = document.getElementById("mainNav");
+    if (nav) {
+      setTimeout(() => {
+        nav.classList.add("visible");
+      }, 100);
+    }
+  
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 50) {
+        nav.classList.add("scrolled");
+      } else {
+        nav.classList.remove("scrolled");
+      }
+    });
+  });
   
