@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Kontakt oss – Medcom</title>
+  <meta name="description" content="Kontakt Medcom for et uforpliktende møte. Vi hjelper din bedrift å vokse digitalt med nettsider, performance-markedsføring og webløsninger." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Kontakt oss – Medcom" />
+  <meta property="og:description" content="Book et uforpliktende møte. Vi svarer vanligvis innen 24 timer." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="nb_NO" />
+  <meta property="og:image" content="assets/images/og/medcom-og.jpg" />
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <!-- Canonical -->
+  <link rel="canonical" href="https://medcom.no/kontakt.html" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Preload hero-bilde -->
+  <link rel="preload" as="image"
+        href="assets/images/team/team-meeting.webp"
+        imagesrcset="assets/images/team/team-meeting.webp 1200w, assets/images/team/team-meeting@2x.webp 2000w"
+        imagesizes="(max-width: 900px) 100vw, 50vw" />
+</head>
+
+<body class="site">
+  <!-- Skip to content -->
+  <a class="skip-to-content" href="#main-content">Hopp til hovedinnhold</a>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <nav class="nav container" aria-label="Hovedmeny">
+      <a class="nav__logo" href="index.html" aria-label="Medcom – Hjem">
+        <img
+          class="nav__logo-img"
+          src="assets/images/hero/medcom-logo.png"
+          alt="Medcom"
+          width="160"
+          height="36"
+          loading="eager"
+          decoding="async"
+        />
+      </a>
+      <div class="nav__menu" id="nav-menu" role="dialog" aria-modal="true" aria-label="Navigasjon">
+        <ul class="nav__list" role="list">
+          <li class="nav__item"><a href="index.html" class="nav__link active-link" aria-current="page">Hjem</a></li>
+          <li class="nav__item"><a href="om-oss.html" class="nav__link">Om oss</a></li>
+          <li class="nav__item"><a href="tjenester.html" class="nav__link">Tjenester</a></li>
+          <li class="nav__item"><a href="kontakt.html" class="nav__link">Kontakt</a></li>
+                    <li class="nav__item"><a href="karriere.html" class="nav__link active-link">Karriere</a></li>
+
+        </ul>
+
+        <button class="nav__close" id="nav-close" aria-label="Lukk meny">
+          <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <div class="nav__actions">
+        <a href="kontakt.html" class="btn btn--primary">Book et møte</a>
+        <button class="nav__toggle" id="nav-toggle" aria-label="Åpne meny">
+          <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main -->
+  <main id="main-content" class="main" tabindex="-1">
+    <!-- Brødsmuler -->
+    <nav class="breadcrumbs" aria-label="Brødsmuler">
+      <div class="container">
+        <ol>
+          <li><a href="index.html">Hjem</a></li>
+          <li aria-current="page">Kontakt</li>
+        </ol>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero section" id="hjem" aria-labelledby="hero-title">
+  <div class="hero__container container">
+    <div class="hero__content">
+      <h1 class="hero__title sr-hero-1" id="hero-title">
+        Klar for å <span class="hero__title-accent">vokse digitalt?</span>
+      </h1>
+
+      <p class="hero__description sr-hero-2">
+        Book et uforpliktende møte – jo mer info du gir, jo bedre kan vi hjelpe. Vi svarer vanligvis innen 24&nbsp;timer.
+      </p>
+
+      <div class="hero__actions sr-hero-3">
+        <a href="#kontakt" class="btn btn--primary btn--large">
+          Kontakt oss
+        </a>
+        <a href="tjenester.html" class="btn btn--secondary btn--large">
+          Se tjenester
+        </a>
+      </div>
+<!---->
+      <div class="hero__stats sr-hero-stats" aria-label="Nøkkeltall">
+        <div class="hero__stat">
+          <span class="hero__stat-number" data-countup data-count-to="500" data-suffix="+" data-duration="2500">0</span>
+          <span class="hero__stat-text">Leads generert</span>
+        </div>
+        <div class="hero__stat">
+          <span class="hero__stat-number" data-countup data-count-to="5" data-suffix="+" data-duration="5000">0</span>
+          <span class="hero__stat-text">År med erfaring</span>
+        </div>
+        <div class="hero__stat">
+          <span class="hero__stat-number" data-countup data-count-to="100" data-suffix="%" data-duration="2500">0</span>
+          <span class="hero__stat-text">Målbare resultater</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bilde: moderne formater + ekte JPG fallback + parallax hint -->
+    <div class="hero__image sr-hero-image">
+      <picture>
+        <!-- Hvis du lager webp/avif-varianter, legg til <source> her -->
+        <img
+          src="assets/images/team/gruppe.webp"
+          alt="Kundemøte hos Medcom"
+          class="hero__img"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </picture>
+
+      <div class="hero__image-overlay">
+        <span class="hero__badge">
+          <i class="fa-solid fa-medal" aria-hidden="true"></i>
+          Resultatfokus
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    <!-- Kontakt -->
+    <section class="contact section" id="kontakt" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="section__header">
+          <span class="section__subtitle">Kontakt oss</span>
+          <h2 class="section__title" id="contact-title">
+            La oss finne <span class="section__title-accent">riktig løsning</span>
+          </h2>
+          <p class="section__description">
+            Åpningstider: Man–Fre 09–17. Kveldstid etter avtale.
+          </p>
+        </div>
+
+        <div class="contact__container">
+          <!-- Kontaktinfo -->
+          <div class="contact__info">
+            <!-- Telefon -->
+            <div class="contact__card">
+              <div class="contact__card-icon"><i class="fas fa-phone" aria-hidden="true"></i></div>
+              <div class="contact__card-content">
+                <h3 class="contact__card-title">Ring oss</h3>
+                <p class="contact__card-text">
+                  <a href="tel:+4797817654">+47 97 81 76 54</a>
+                </p>
+                <span class="contact__card-note">Hverdager 09:00–17:00</span>
+              </div>
+            </div>
+
+            <!-- E‑post -->
+            <div class="contact__card">
+              <div class="contact__card-icon"><i class="fas fa-envelope" aria-hidden="true"></i></div>
+              <div class="contact__card-content">
+                <h3 class="contact__card-title">Send e‑post</h3>
+                <p class="contact__card-text"><a href="mailto:post@medcom.no">post@medcom.no</a></p>
+                <span class="contact__card-note">Vi svarer normalt innen 24&nbsp;timer</span>
+              </div>
+            </div>
+
+            <!-- Adresse (valgfritt) -->
+            <div class="contact__card">
+              <div class="contact__card-icon"><i class="fas fa-map-marker-alt" aria-hidden="true"></i></div>
+              <div class="contact__card-content">
+                <h3 class="contact__card-title">Kontor</h3>
+                <p class="contact__card-text">
+                  Oslo, Norge
+                </p>
+                <span class="contact__card-note">Møter digitalt eller hos dere</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Skjema (ID/fields samsvarer med script.js) -->
+          <form class="contact__form" id="contact-form" novalidate  action="https://formspree.io/f/mldllgzg"
+  method="POST">
+            
+            <div class="form__group">
+              <label for="name" class="form__label">Navn *</label>
+              <input type="text" id="name" name="name" class="form__input" required autocomplete="name" placeholder="Fornavn og etternavn" />
+            </div>
+
+            <div class="form__group">
+              <label for="email" class="form__label">E‑post *</label>
+              <input type="email" id="email" name="email" class="form__input" required autocomplete="email" inputmode="email" placeholder="din@bedrift.no" />
+            </div>
+
+            <div class="form__group">
+              <label for="phone" class="form__label">Telefon</label>
+              <input type="tel" id="phone" name="phone" class="form__input" autocomplete="tel" inputmode="tel" pattern="^[0-9 +()\\-]{5,}$" placeholder="+47 12 34 56 78" />
+            </div>
+
+            <div class="form__group">
+              <label for="project-type" class="form__label">Type henvendelse</label>
+              <select id="project-type" name="project-type" class="form__select">
+                <option value="">Velg type henvendelse</option>
+                <option value="nettside">Nettside & utvikling</option>
+                <option value="markedsforing">Digital markedsføring</option>
+                <option value="weblosninger">Avanserte webløsninger</option>
+                <option value="annet">Annet</option>
+              </select>
+            </div>
+
+            <div class="form__group form__group--full">
+              <label for="message" class="form__label">Melding *</label>
+              <textarea id="message" name="message" class="form__textarea" rows="5" placeholder="Fortell kort om mål, budsjett og ønsket tidslinje …" required></textarea>
+            </div>
+
+            <!-- Honeypot (spam-beskyttelse, optional) -->
+            <div aria-hidden="true" style="position:absolute;left:-5000px;">
+              <label for="website">Website</label>
+              <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+            </div>
+
+            <button type="submit" class="btn btn--primary btn--large form__submit" aria-label="Send melding">
+              <i class="fas fa-paper-plane" aria-hidden="true"></i>
+              Send melding
+            </button>
+          </form>
+          <!-- Takk‑melding -->
+<div id="thank-you" class="thank" hidden>
+  <div class="thank__icon" aria-hidden="true">
+    <i class="fas fa-check"></i>
+  </div>
+  <h3 class="thank__title">Takk for meldingen!</h3>
+  <p class="thank__text">
+    Vi har mottatt henvendelsen din og kontakter deg så snart som mulig.
+  </p>
+  <div class="thank__actions">
+ 
+    <a href="/" class="btn btn--primary">Til forsiden</a>
+  </div>
+</div>
+
+        </div>
+
+        <!-- Kart (valgfritt – generisk Oslo) -->
+        <div class="contact__map" aria-label="Kart">
+          <iframe
+            src="https://www.google.com/maps?q=Oslo,Norway&output=embed"
+            class="contact__map-iframe"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq section" aria-labelledby="faq-title">
+      <div class="container">
+        <div class="section__header">
+          <span class="section__subtitle">Ofte stilte spørsmål</span>
+          <h2 class="section__title" id="faq-title">
+            Har du <span class="section__title-accent">spørsmål?</span>
+          </h2>
+        </div>
+
+        <div class="faq__container">
+          <div class="faq__item">
+            <button class="faq__question" aria-expanded="false">
+              <span>Hvor lang tid tar det å lage en nettside?</span>
+              <i class="fas fa-chevron-down faq__icon"></i>
+            </button>
+            <div class="faq__answer">
+              <p>En enkel nettside tar vanligvis 2–4 uker, mens mer komplekse løsninger kan ta 6–12 uker. Du får en tydelig tidsplan etter første møte.</p>
+            </div>
+          </div>
+
+          <div class="faq__item">
+            <button class="faq__question" aria-expanded="false">
+              <span>Hva koster digital markedsføring?</span>
+              <i class="fas fa-chevron-down faq__icon"></i>
+            </button>
+            <div class="faq__answer">
+              <p>Pakkene våre starter fra 8&nbsp;000 kr/mnd. Pris avhenger av kanaler, omfang og mål – vi lager alltid en skreddersydd plan.</p>
+            </div>
+          </div>
+
+          <div class="faq__item">
+            <button class="faq__question" aria-expanded="false">
+              <span>Tilbyr dere vedlikehold av nettsider?</span>
+              <i class="fas fa-chevron-down faq__icon"></i>
+            </button>
+            <div class="faq__answer">
+              <p>Ja. Oppdateringer, sikkerhet, backup og teknisk support kan inngå i vedlikeholdsavtale eller leveres ved behov.</p>
+            </div>
+          </div>
+
+          <div class="faq__item">
+            <button class="faq__question" aria-expanded="false">
+              <span>Kan dere hjelpe med eksisterende løsninger?</span>
+              <i class="fas fa-chevron-down faq__icon"></i>
+            </button>
+            <div class="faq__answer">
+              <p>Absolutt. Vi kan forbedre, oppdatere eller redesigne – og foreslår raske gevinster samt en langsiktig plan.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer (matcher forbedret footer‑CSS) -->
+  <footer class="footer footer--sticky">
+    <a href="#header" class="footer__to-top" aria-label="Til toppen"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i></a>
+
+    <div class="footer__container">
+      <div class="footer__content">
+        <!-- Brand / Intro -->
+        <section class="footer__brand" aria-labelledby="footer-brand">
+          <a class="footer__logo" id="footer-brand" href="index.html">
+            <i class="fa-solid fa-rocket" aria-hidden="true"></i>
+            Medcom
+          </a>
+          <p class="footer__tagline">
+            Din partner for digital vekst siden 2024. Vi leverer ikke bare nettsider og kampanjer – vi leverer vekst.
+          </p>
+          <div class="footer__badges">
+            <span class="footer__badge"><i class="fa-solid fa-shield-check" aria-hidden="true"></i> Sertifisert</span>
+            <span class="footer__badge"><i class="fa-solid fa-chart-line" aria-hidden="true"></i> Resultatfokus</span>
+          </div>
+
+          <div class="footer__social" aria-label="Sosiale medier">
+            <a href="#" class="footer__social-link" aria-label="Facebook" rel="noopener nofollow"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="#" class="footer__social-link" aria-label="Instagram" rel="noopener nofollow"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" class="footer__social-link" aria-label="LinkedIn" rel="noopener nofollow"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+          </div>
+
+      <!--
+          <form class="footer__form" action="#" method="post" aria-label="Meld deg på nyhetsbrev">
+            <label class="sr-only" for="nl-email">E‑post</label>
+            <input class="footer__input" id="nl-email" type="email" name="email" placeholder="Din e‑post" autocomplete="email" required />
+            <button class="footer__submit" type="submit">Meld meg på</button>
+          </form>
+          -->
+        </section>
+
+        <!-- Kolonne: Tjenester -->
+        <nav aria-labelledby="footer-services">
+          <h3 class="footer__title" id="footer-services">Tjenester</h3>
+          <ul class="footer__list" role="list">
+            <li><a class="footer__link" href="tjenester.html"><i class="fa-solid fa-angle-right" aria-hidden="true"></i> Nettside & utvikling</a></li>
+            <li><a class="footer__link" href="tjenester.html"><i class="fa-solid fa-angle-right" aria-hidden="true"></i> Digital markedsføring</a></li>
+            <li><a class="footer__link" href="tjenester.html"><i class="fa-solid fa-angle-right" aria-hidden="true"></i> Avanserte webløsninger</a></li>
+            <li><a class="footer__link" href="tjenester.html"><i class="fa-solid fa-angle-right" aria-hidden="true"></i> Skreddersøm</a></li>
+          </ul>
+        </nav>
+
+        <!-- Kolonne: Selskapet -->
+        <nav aria-labelledby="footer-company">
+          <h3 class="footer__title" id="footer-company">Selskapet</h3>
+          <ul class="footer__list" role="list">
+            <li><a class="footer__link" href="om-oss.html"><i class="fa-solid fa-angle-right" aria-hidden="true"></i> Om oss</a></li>
+            <li><a class="footer__link" href="om-oss.html#team"><i class="fa-solid fa-angle-right" aria-hidden="true"></i> Vårt team</a></li>
+                                    <li><a class="footer__link" href="karriere.html"><i class="fa-solid fa-angle-right" aria-hidden="true"></i> Jobb hos oss</a></li>
+
+         <!--   <li><a class="footer__link" href="#"><i class="fa-solid fa-angle-right" aria-hidden="true"></i> Karriere</a></li>
+            <li><a class="footer__link" href="#"><i class="fa-solid fa-angle-right" aria-hidden="true"></i> Nyheter</a></li>-->
+          </ul>
+        </nav>
+
+        <!-- Kolonne: Kontakt -->
+        <section aria-labelledby="footer-contact">
+          <h3 class="footer__title" id="footer-contact">Kontakt</h3>
+          <ul class="footer__list" role="list">
+            <li class="footer__contact"><i class="fas fa-phone" aria-hidden="true"></i> <a class="footer__link" href="tel:+4797817654">+47 97 81 76 54</a></li>
+            <li class="footer__contact"><i class="fas fa-envelope" aria-hidden="true"></i> <a class="footer__link" href="mailto:post@medcom.no">post@medcom.no</a></li>
+            <li class="footer__contact"><i class="fas fa-clock" aria-hidden="true"></i> <span class="footer__link">Man–Fre, 09:00–17:00</span></li>
+          </ul>
+        </section>
+      </div>
+
+      <div class="footer__divider" role="presentation"></div>
+
+      <div class="footer__bottom">
+        <p class="footer__copyright">© 2024 Medcom. Alle rettigheter reservert.</p>
+          <div class="footer__legal" aria-label="Juridisk">
+          <a href="personvern.html" class="footer__legal-link">Personvern, Vilkår & Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to top -->
+  <button class="scroll-top" id="scroll-top" aria-label="Til toppen">
+    <i class="fas fa-arrow-up" aria-hidden="true"></i>
+  </button>
+
+  <!-- ScrollReveal + felles script -->
+  <script src="https://unpkg.com/scrollreveal" defer></script>
+  <script src="js/script.js" defer></script>
+
+  <!-- FAQ: enkel toggle (samarbeider fint med CSS) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.body.classList.add('is-ready'); // trigger for hero on‑load reveal i CSS
+
+      const items = document.querySelectorAll('.faq__item');
+      items.forEach(item => {
+        const btn = item.querySelector('.faq__question');
+        const panel = item.querySelector('.faq__answer');
+        panel.style.maxHeight = '0px';
+
+        btn.addEventListener('click', () => {
+          const open = btn.getAttribute('aria-expanded') === 'true';
+          // Lukk andre
+          items.forEach(it => {
+            if (it !== item) {
+              it.querySelector('.faq__question').setAttribute('aria-expanded', 'false');
+              it.querySelector('.faq__answer').style.maxHeight = '0px';
+            }
+          });
+          // Toggle denne
+          btn.setAttribute('aria-expanded', String(!open));
+          panel.style.maxHeight = open ? '0px' : panel.scrollHeight + 'px';
+        });
+      });
+    });
+  </script>
+</body>
+</html>

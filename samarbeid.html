@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="no" class="js">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Samarbeid – Start flyt | Medcom</title>
+  <meta name="description" content="Velg tjeneste, fyll inn info og send forespørsel. Rask, ryddig og Medcom‑smooth." />
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+  <style>
+    /* ==========================================
+       MEDCOM — LIGHT, FRIENDLY, BLACK+GOLD
+       - Lys bakgrunn, gull aksenter, vennlig typografi
+       - Kort og bakgrunn samme farge
+       - Like høye valgkort
+    ========================================== */
+
+    :root{
+      /* Brand / palette */
+      --bg:#c1aa67;           /* lys, vennlig base */
+      --surface:#FFFFFF;      /* kort/bakgrunn (sømløst) */
+      --surface-1:#FAFAF8;    /* svakt hevet felt */
+      --line:rgba(9,9,9,.08);
+      --line-strong:rgba(9,9,9,.16);
+
+      /* Tekst */
+      --on:#2A2A2A;           /* hovedtekst (nesten sort) */
+      --muted:#000000;        /* sekundær */
+      --dim:#040911;          /* hint */
+
+      /* Gold / champagne (Medcom vibe) */
+      --gold-300:#F4E39D;
+      --gold-500:#E8D37A;
+      --gold-600:#D9B63B;
+
+      /* Charcoal aksent for knapper/ikon */
+      --charcoal:#4B4846;
+
+      /* Motion / shadow */
+      --shadow-1:0 20px 40px rgba(20,20,20,.08);
+      --shadow-2:0 10px 24px rgba(20,20,20,.06);
+      --ease:.22s ease;
+    }
+
+    html,body{ height:100%; background:var(--bg); color:var(--on); }
+    body{
+      -webkit-tap-highlight-color:transparent;
+      font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+      font-size:17px; line-height:1.6;
+    }
+    h1,h2,h3{ font-weight:800; letter-spacing:.1px; }
+
+    .wizard{ min-height:100vh; display:grid; grid-template-rows:auto auto 1fr auto; }
+
+    /* Topbar (lys glass, myke kanter) */
+    .top{
+      padding: .75rem clamp(1rem,3vw,1.25rem);
+      display:grid; grid-template-columns:1fr auto; align-items:center; gap:.75rem;
+      background: rgba(255,255,255,.75);
+      -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--line);
+    }
+    .brand{ display:inline-flex; gap:.55rem; align-items:center; font-weight:800; color:var(--charcoal); }
+    .brand i{ color:var(--gold-600); }
+    .top__actions{ display:inline-flex; gap:.5rem; }
+    .icon-btn{
+      width:36px;height:36px;border-radius:12px;display:grid;place-items:center;
+      background:#fff; color:var(--charcoal); border:1px solid var(--line);
+      box-shadow: var(--shadow-2);
+      transition:transform var(--ease), box-shadow var(--ease), border-color var(--ease);
+    }
+    .icon-btn:hover{ transform:translateY(-1px); box-shadow: var(--shadow-1); border-color:var(--line-strong); }
+
+    /* Fremdrift */
+    .progress-wrap{ width:min(560px,92vw); margin:.55rem auto 0; }
+    .progress{ height:10px; background:#EEECE6; border-radius:999px; overflow:hidden; border:1px solid var(--line); }
+    .progress__bar{
+      height:100%; width:0%;
+      background: linear-gradient(90deg, var(--gold-600), var(--gold-300));
+      box-shadow: 0 0 16px rgba(217,182,59,.22) inset;
+      transition:width .35s ease;
+    }
+    .steps{ width:min(560px,92vw); margin:.45rem auto 0; display:flex; justify-content:space-between; color:var(--dim); font-size:.9rem; }
+    @media (max-width:720px){ .steps{ display:none; } }
+
+    /* Scene + kort (kort == surface == bakgrunn) */
+    .stage{ min-height: calc(100dvh - 160px); display:grid; place-items:center; padding: clamp(1rem,3vw,1.5rem); }
+    .card{
+      width:min(720px,92vw);
+      background: var(--surface);      /* samme som bakgrunn */
+      color: var(--on);
+      border-radius: 18px;
+      border:1px solid var(--line);
+      box-shadow: var(--shadow-1);
+      padding: clamp(1rem, 2.2vw, 1.5rem);
+      animation:cardIn .25s ease;
+    }
+    @keyframes cardIn{ from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:none} }
+
+    .card__headline{ display:flex; align-items:center; gap:.7rem; margin-bottom:.5rem; justify-content:center; text-align:center; }
+    .badge-step{
+      inline-size:32px; block-size:32px; border-radius:10px; display:grid; place-items:center;
+      color:#1a1a1a; font-weight:900; font-size:.95rem;
+      background: radial-gradient(60% 60% at 40% 40%, var(--gold-600), var(--gold-300));
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,.08);
+    }
+    .card__title{ font-size: clamp(1.4rem,2.4vw,1.8rem); color:var(--charcoal); }
+    .card__muted{ color:var(--muted); }
+
+    /* Valg – like store bokser, vennlig */
+    .choices{ display:grid; grid-template-columns:1fr; gap:.9rem; margin-top:.8rem; }
+    .choice{
+      display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:1rem;
+      min-height: 92px;                     /* LIKE HØYDE */
+      padding: 1rem 1.1rem;
+      border-radius: 14px;
+      background: var(--surface);           /* samme som kort/bakgrunn */
+      border:1px solid var(--line);
+      box-shadow: var(--shadow-2);
+      cursor:pointer;
+      transition:transform var(--ease), border-color var(--ease), box-shadow var(--ease), background var(--ease);
+    }
+    .choice:hover{
+      transform:translateY(-2px);
+      border-color: var(--line-strong);
+      box-shadow: var(--shadow-1);
+      background: var(--surface-1);
+    }
+    .choice__icon{
+      inline-size:56px; block-size:56px; border-radius:12px; display:grid; place-items:center; font-size:1.25rem; color:#1b1b1b;
+      background: radial-gradient(60% 60% at 40% 40%, var(--gold-600), var(--gold-300));
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,.08);
+    }
+    .choice__title{ font-weight:800; letter-spacing:.2px; color:var(--charcoal); }
+    .choice__desc{ color:var(--muted); }
+    .choice__chev{ color:var(--dim); }
+
+    /* Skjema – lyst med gull fokus */
+    .form{ display:grid; grid-template-columns:1fr; gap:.95rem; margin-top:.9rem; width:min(560px,100%); margin-inline:auto; }
+    .label{ font-weight:700; color:var(--charcoal); }
+    .input,.select,.textarea{
+      width:100%; color:var(--on);
+      background: #fff;
+      border:1px solid var(--line);
+      border-radius:12px; padding:.9rem 1rem;
+      transition:border-color var(--ease), box-shadow var(--ease), background var(--ease);
+    }
+    .input::placeholder,.textarea::placeholder{ color:var(--dim); }
+    .input:focus,.select:focus,.textarea:focus{
+      background: #fff;
+      border-color: var(--gold-600);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--gold-600) 30%, transparent);
+      outline:none;
+    }
+    .invalid .input{ border-color:#E5484D; box-shadow:0 0 0 3px rgba(229,72,77,.20); }
+    .hint-inline{ display:none; }
+    .invalid .hint-inline{ display:block; color:#B95055; font-size:.92rem; margin-top:.15rem; }
+
+    /* Toggle */
+    .toggle{
+      display:inline-flex; gap:.25rem; padding:.25rem;
+      border:1px solid var(--line); border-radius:999px; background:#fff; box-shadow: var(--shadow-2);
+    }
+    .toggle__btn{
+      padding:.6rem 1rem; border-radius:999px; background:transparent; color:var(--charcoal); font-weight:800; border:0;
+    }
+    .toggle__btn[aria-pressed="true"]{
+      color:#1a1a1a; background: linear-gradient(90deg, var(--gold-600), var(--gold-300));
+    }
+
+    /* Tid-chips */
+    .chips{ display:flex; flex-wrap:wrap; gap:.6rem; justify-content:center; margin-top:.55rem; }
+    .chip{
+      border:1px solid var(--line); background:#fff; color:var(--charcoal);
+      border-radius:999px; padding:.78rem 1.1rem; transition:border-color var(--ease), box-shadow var(--ease), transform var(--ease), background var(--ease);
+    }
+    .chip:hover{ transform:translateY(-1px); border-color:var(--line-strong); box-shadow: var(--shadow-2); background:var(--surface-1); }
+    .chip[aria-pressed="true"]{ background: linear-gradient(90deg, var(--gold-600), var(--gold-300)); color:#151515; font-weight:900; }
+
+    /* Knapper */
+    .btn{
+      display:inline-flex; align-items:center; gap:.55rem; padding:.95rem 1.25rem;
+      border-radius:999px; border:1px solid var(--line); background:#fff; color:var(--charcoal); font-weight:800;
+      transition:transform var(--ease), box-shadow var(--ease), border-color var(--ease), background var(--ease);
+    }
+    .btn:hover{ transform:translateY(-1px); box-shadow: var(--shadow-1); border-color:var(--line-strong); background:var(--surface-1); }
+    .btn--accent{ background: linear-gradient(90deg, var(--gold-600), var(--gold-300)); color:#111; border-color:transparent; }
+    .btn[disabled]{ opacity:.55; cursor:not-allowed; box-shadow:none; transform:none; }
+
+    /* Footer i kortet – midtstilt */
+    .card__footer{
+      border-top:1px solid var(--line);
+      margin-top:1rem; padding-top:.95rem;
+      display:flex; justify-content:center; gap:.75rem;
+    }
+    @media (max-width:720px){
+      .card__footer{ flex-direction:column-reverse; align-items:stretch; }
+      .btn{ width:100%; }
+    }
+
+    /* Hint nederst */
+    .bottom{ padding:.7rem; text-align:center; color:var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="wizard" id="app" aria-live="polite">
+    <!-- Topbar -->
+    <div class="top">
+      <div class="brand"><i class="fa-solid fa-rocket"></i> Medcom</div>
+      <div class="top__actions">
+        <button class="icon-btn" aria-label="Språk"><i class="fa-solid fa-globe"></i></button>
+        <a class="icon-btn" href="index.html" aria-label="Lukk"><i class="fa-solid fa-xmark"></i></a>
+      </div>
+    </div>
+
+    <!-- Fremdrift -->
+    <div class="progress-wrap">
+      <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Fremdrift">
+        <div class="progress__bar" id="progressBar"></div>
+      </div>
+    </div>
+    <div class="steps" aria-hidden="true">
+      <span>1. Tjeneste</span><span>2. Informasjon</span><span>3. Tidspunkt</span><span>4. Bekreft</span>
+    </div>
+
+    <!-- Scene -->
+    <main class="stage">
+      <section class="card" id="stage"></section>
+    </main>
+
+    <!-- Hint nederst -->
+    <div class="bottom">
+      <div id="hint"></div>
+    </div>
+  </div>
+
+  <script>
+    const stageEl = document.getElementById('stage');
+    const barEl   = document.getElementById('progressBar');
+    const hintEl  = document.getElementById('hint');
+
+    const totalSteps = 4; let step = 1;
+    const data = { service:null, type:'privat', name:'', email:'', phone:'', company:'', orgnr:'', timePref:'', timeFree:'', notes:'' };
+
+    // Forvalg via ?service=
+    (function(){
+      const s = new URLSearchParams(location.search).get('service');
+      if(!s) return;
+      const map = { 'nettside':'Nettside', 'markedsføring':'Markedsføring', 'markedsforing':'Markedsføring', 'avanserte':'Avanserte løsninger', 'skreddersøm':'Skreddersøm', 'skreddersom':'Skreddersøm' };
+      const key = (s||'').toLowerCase();
+      if(map[key]) { data.service = map[key]; step = 2; }
+    })();
+
+    const pct = () => Math.round(((step-1)/(totalSteps-1))*100);
+    function setProgress(){ const p=pct(); barEl.style.width=p+'%'; barEl.parentElement.setAttribute('aria-valuenow', p); }
+    function go(delta){ step=Math.max(1,Math.min(totalSteps, step+delta)); render(); }
+
+    const el = (tag, attrs={}, html='')=>{
+      const e = document.createElement(tag);
+      for(const [k,v] of Object.entries(attrs)){
+        if(k==='class') e.className=v;
+        else if(k.startsWith('on') && typeof v==='function') e.addEventListener(k.slice(2), v);
+        else if(k==='html') e.innerHTML=v;
+        else e.setAttribute(k,v);
+      }
+      if(html) e.innerHTML=html;
+      return e;
+    };
+
+    // Validering
+    const emailOk = (s) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(s||'').trim());
+    function canSubmit(){ return step===4 && data.service && data.name && emailOk(data.email); }
+
+    function render(){
+      setProgress();
+      stageEl.innerHTML = '';
+      hintEl.textContent='';
+
+      const header = (n, t, d) => el('div',{class:'card__headline'}, `
+        <div class="badge-step">${n}</div>
+        <div>
+          <h2 class="card__title">${t}</h2>
+          <p class="card__muted">${d||''}</p>
+        </div>
+      `);
+
+      const footer = () => {
+        const f = el('div',{class:'card__footer'});
+        const back = el('button',{class:'btn', type:'button', id:'btnBackInline'},'<i class="fa-solid fa-arrow-left"></i> Tilbake');
+        back.addEventListener('click', ()=>{ if(step===1){ location.href='index.html'; return; } go(-1); });
+        f.append(back);
+        if(step===4){
+          const submit = el('button',{class:'btn btn--accent', type:'button', id:'btnSubmit', disabled: !canSubmit()}, 'Send forespørsel');
+          submit.addEventListener('click', submitForm);
+          f.append(submit);
+        }
+        return f;
+      };
+
+      // STEP 1
+      if(step===1){
+        stageEl.append(header(1,'Velg tjeneste','Hva ønsker du hjelp med? Du kan endre senere.'));
+        const list = el('div',{class:'choices'});
+        [
+          { k:'Nettside', icon:'<i class="fa-solid fa-laptop-code"></i>', d:'Design & utvikling av høytytende nettsider' },
+          { k:'Markedsføring', icon:'<i class="fa-solid fa-bullhorn"></i>', d:'Google Ads, Meta, SEO og vekst' },
+          { k:'Avanserte løsninger', icon:'<i class="fa-solid fa-server"></i>', d:'Integrasjoner, portaler, dashbord' },
+          { k:'Skreddersøm', icon:'<i class="fa-solid fa-puzzle-piece"></i>', d:'Unike løsninger rundt dine mål' },
+        ].forEach(c=>{
+          const item = el('button',{class:'choice',type:'button'});
+          item.innerHTML = `
+            <div class="choice__icon" aria-hidden="true">${c.icon}</div>
+            <div class="choice__text">
+              <div class="choice__title">${c.k}</div>
+              <div class="choice__desc">${c.d}</div>
+            </div>
+            <div class="choice__chev"><i class="fa-solid fa-chevron-right"></i></div>
+          `;
+          item.addEventListener('click', ()=>{ data.service=c.k; go(+1); });
+          list.appendChild(item);
+        });
+        stageEl.append(list, footer());
+        hintEl.textContent='Tips: Klikk et valg for å gå videre.';
+        return;
+      }
+
+      // STEP 2
+      if(step===2){
+        stageEl.append(header(2,'Din informasjon','Vi går videre automatisk når navn + e‑post er gyldig.'));
+
+        const toggleWrap = el('div',{style:'display:flex; justify-content:center; margin:.25rem 0 .25rem'});
+        const toggle = el('div',{class:'toggle', role:'group','aria-label':'Type kunde'});
+        const bPriv = el('button',{class:'toggle__btn', type:'button','aria-pressed':String(data.type==='privat')},'Privat');
+        const bBedr = el('button',{class:'toggle__btn', type:'button','aria-pressed':String(data.type==='bedrift')},'Bedrift');
+        function setType(t){ data.type=t; bPriv.setAttribute('aria-pressed',String(t==='privat')); bBedr.setAttribute('aria-pressed',String(t==='bedrift')); render(); }
+        bPriv.addEventListener('click',()=>setType('privat'));
+        bBedr.addEventListener('click',()=>setType('bedrift'));
+        toggle.append(bPriv,bBedr); toggleWrap.append(toggle);
+
+        const form = el('div',{class:'form', id:'infoForm'});
+        form.append(
+          el('div',{id:'wrap_name'}, `<label class="label" for="f_name">Navn *</label><input id="f_name" class="input" type="text" placeholder="Fornavn og etternavn" required>`),
+          el('div',{id:'wrap_email'}, `<label class="label" for="f_email">E‑post *</label><input id="f_email" class="input" type="email" placeholder="din@epost.no" required>`),
+          el('div',{}, `<label class="label" for="f_phone">Telefon</label><input id="f_phone" class="input" type="tel" inputmode="tel" placeholder="+47 12 34 56 78">`)
+        );
+        if(data.type==='bedrift'){
+          form.append(
+            el('div',{}, `<label class="label" for="f_company">Bedrift</label><input id="f_company" class="input" type="text" placeholder="Firmanavn">`),
+            el('div',{}, `<label class="label" for="f_org">Org.nr</label><input id="f_org" class="input" type="text" inputmode="numeric" placeholder="9 siffer">`)
+          );
+        }
+        form.append(
+          el('div',{}, `
+            <label class="label" for="f_notes">Kort om behovet (valgfritt)</label>
+            <textarea id="f_notes" class="textarea" rows="3" placeholder="Mål, budsjett, tidslinje …"></textarea>
+          `)
+        );
+
+        stageEl.append(toggleWrap, form, footer());
+
+        setTimeout(()=>{
+          const $=id=>document.getElementById(id);
+          $('#f_name').value=data.name||''; $('#f_email').value=data.email||''; $('#f_phone').value=data.phone||'';
+          if(data.type==='bedrift'){ $('#f_company').value=data.company||''; $('#f_org').value=data.orgnr||''; }
+          $('#f_notes').value=data.notes||'';
+        });
+
+        function validate(){
+          const name = document.getElementById('f_name').value.trim();
+          const mail = document.getElementById('f_email').value.trim();
+          const ok = name && emailOk(mail);
+          document.getElementById('wrap_name').classList.toggle('invalid', !name);
+          document.getElementById('wrap_email').classList.toggle('invalid', !emailOk(mail));
+          return ok;
+        }
+        function save(){
+          const $=id=>document.getElementById(id);
+          data.name=$('#f_name').value.trim();
+          data.email=$('#f_email').value.trim();
+          data.phone=$('#f_phone').value.trim();
+          data.notes=$('#f_notes').value.trim();
+          if(data.type==='bedrift'){
+            data.company=(document.getElementById('f_company')?.value||'').trim();
+            data.orgnr=(document.getElementById('f_org')?.value||'').trim();
+          } else { data.company=''; data.orgnr=''; }
+        }
+        function attempt(){ if(validate()){ save(); go(+1); } }
+
+        stageEl.addEventListener('input', (e)=>{ if(e.target.matches('.input,.textarea')) validate(); });
+        stageEl.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); attempt(); } });
+        stageEl.addEventListener('focusout', ()=> setTimeout(attempt, 120));
+
+        hintEl.textContent='Fyll inn navn og e‑post. Vi hopper videre automatisk når feltene er gyldige.';
+        return;
+      }
+
+      // STEP 3
+      if(step===3){
+        stageEl.append(header(3,'Når passer det?','Velg et forslag eller skriv inn annet tidsrom.'));
+        const chips = el('div',{class:'chips', role:'group','aria-label':'Tidspreferanse'});
+        ['Så snart som mulig','Denne uken','Neste uke'].forEach(lbl=>{
+          const c = el('button',{class:'chip',type:'button','aria-pressed':String(data.timePref===lbl)}, lbl);
+          c.addEventListener('click', ()=>{
+            data.timePref=lbl;
+            [...chips.children].forEach(x=>x.setAttribute('aria-pressed','false'));
+            c.setAttribute('aria-pressed','true');
+            setTimeout(()=>go(+1), 160);
+          });
+          chips.appendChild(c);
+        });
+        const free = el('div',{class:'form', style:'margin-top:.2rem;'});
+        free.innerHTML = `
+          <div>
+            <label class="label" for="t_free">Annen tid / kommentar (valgfritt)</label>
+            <input id="t_free" class="input" type="text" placeholder="F.eks. Mandag etter 12, eller kveldstid">
+            <div class="hint-inline">Trykk Enter for å gå videre når et forslag er valgt.</div>
+          </div>
+        `;
+        stageEl.append(chips, free, footer());
+        setTimeout(()=>{
+          const inp=document.getElementById('t_free');
+          inp.value=data.timeFree||'';
+          inp.addEventListener('input', ()=> data.timeFree=inp.value.trim());
+          inp.addEventListener('keydown', (e)=>{ if(e.key==='Enter' && data.timePref){ e.preventDefault(); go(+1); } });
+        });
+        hintEl.textContent = data.timePref ? 'Trykk Enter for å gå videre.' : 'Velg en chip for å gå videre automatisk.';
+        return;
+      }
+
+      // STEP 4
+      if(step===4){
+        stageEl.append(header(4,'Sjekk og send','Vi bruker dette for å forberede samtalen.'));
+        const review = el('div',{style:'margin-top:.75rem; display:grid; gap:.45rem; color:var(--muted);'});
+        const rows = [
+          ['Tjeneste', data.service||'—'],
+          ['Type', (data.type==='bedrift'?'Bedrift':'Privat')],
+          ['Navn', data.name||'—'],
+          ['E‑post', data.email||'—'],
+          ...(data.phone?[['Telefon', data.phone]]:[]),
+          ...(data.type==='bedrift' && data.company?[['Bedrift', data.company]]:[]),
+          ...(data.type==='bedrift' && data.orgnr?[['Org.nr', data.orgnr]]:[]),
+          ['Tid', (data.timePref||'Ikke spesifisert') + (data.timeFree?` – ${data.timeFree}`:'')],
+          ...(data.notes?[['Notat', data.notes]]:[]),
+        ];
+        review.innerHTML = rows.map(([k,v])=>`<div><span style="color:var(--dim)">${k}:</span> <strong style="color:var(--on)">${v}</strong></div>`).join('');
+        stageEl.append(review, footer());
+        hintEl.textContent = 'Gå tilbake for å endre, eller send inn nå.';
+        return;
+      }
+    }
+
+    async function submitForm(){
+      if(!canSubmit()) return;
+      const submitBtn = document.getElementById('btnSubmit');
+      submitBtn.disabled=true; submitBtn.textContent='Sender …';
+
+      const formData=new FormData();
+      formData.append('subject','Ny samarbeidsforespørsel via wizard');
+      Object.entries({
+        service:data.service, type:data.type, name:data.name, email:data.email, phone:data.phone,
+        company:data.company, orgnr:data.orgnr, timePref:data.timePref, timeFree:data.timeFree, notes:data.notes
+      }).forEach(([k,v])=> formData.append(k, v||''));
+
+      try{
+        const res = await fetch('https://formspree.io/f/mldllgzg', {
+          method:'POST', body:formData, headers:{Accept:'application/json'}, credentials:'omit'
+        });
+        if(!res.ok){
+          let msg='Kunne ikke sende. Prøv igjen.';
+          try{ const j=await res.json(); if(j?.errors?.length) msg=j.errors.map(e=>e.message).join('\n'); }catch{}
+          throw new Error(msg);
+        }
+
+        const thanks = document.createElement('section');
+        thanks.className='card thank';
+        thanks.innerHTML=`
+          <div style="inline-size:72px;block-size:72px;margin:0 auto .85rem;border-radius:999px;display:grid;place-items:center;font-size:30px;font-weight:900;color:#111;background:linear-gradient(90deg, var(--gold-600), var(--gold-300));box-shadow:var(--shadow-1)"><i class="fa-solid fa-check"></i></div>
+          <h3 style="margin:.2rem 0 .35rem; font-size:clamp(1.2rem,2.2vw,1.4rem); color:var(--charcoal)">Takk! Vi har mottatt forespørselen</h3>
+          <p style="color:var(--muted); margin-bottom:.9rem;">Vi svarer deg snarest med forslag til tidspunkt.</p>
+          <div style="display:flex; gap:.6rem; justify-content:center; flex-wrap:wrap;">
+            <a class="btn" href="index.html"><i class="fa-solid fa-house"></i> Til forsiden</a>
+            <a class="btn" href="tjenester.html"><i class="fa-solid fa-list"></i> Se tjenester</a>
+          </div>
+        `;
+        stageEl.replaceWith(thanks);
+        document.querySelector('.bottom').style.display='none';
+      }catch(err){
+        alert(err.message||'Noe gikk galt. Prøv igjen.');
+        submitBtn.disabled=false; submitBtn.textContent='Send forespørsel';
+      }
+    }
+
+    // init
+    render();
+  </script>
+</body>
+</html>
