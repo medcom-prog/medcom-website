@@ -422,30 +422,41 @@
 
   <!-- FAQ: enkel toggle (samarbeider fint med CSS) -->
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      document.body.classList.add('is-ready'); // trigger for hero on‑load reveal i CSS
+document.addEventListener('DOMContentLoaded', () => {
+  const items = document.querySelectorAll('.faq__container .faq__item');
 
-      const items = document.querySelectorAll('.faq__item');
-      items.forEach(item => {
-        const btn = item.querySelector('.faq__question');
-        const panel = item.querySelector('.faq__answer');
-        panel.style.maxHeight = '0px';
+  items.forEach((item, idx) => {
+    const btn   = item.querySelector('.faq__question');
+    const panel = item.querySelector('.faq__answer');
 
-        btn.addEventListener('click', () => {
-          const open = btn.getAttribute('aria-expanded') === 'true';
-          // Lukk andre
-          items.forEach(it => {
-            if (it !== item) {
-              it.querySelector('.faq__question').setAttribute('aria-expanded', 'false');
-              it.querySelector('.faq__answer').style.maxHeight = '0px';
-            }
-          });
-          // Toggle denne
-          btn.setAttribute('aria-expanded', String(!open));
-          panel.style.maxHeight = open ? '0px' : panel.scrollHeight + 'px';
-        });
-      });
+    // ARIA-koblinger
+    const pid = panel.id || (panel.id = `faq-panel-${idx}`);
+    const bid = btn.id   || (btn.id   = `faq-button-${idx}`);
+    btn.setAttribute('aria-controls', pid);
+    btn.setAttribute('aria-expanded', 'false');
+    panel.setAttribute('role', 'region');
+    panel.setAttribute('aria-labelledby', bid);
+
+    // Start lukket
+    panel.style.maxHeight = '0px';
+
+    // Toggle (ingen “lukk andre” – hver lever sitt eget liv)
+    btn.addEventListener('click', () => {
+      const isOpen = item.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', String(isOpen));
+      panel.style.maxHeight = isOpen ? panel.scrollHeight + 'px' : '0px';
     });
-  </script>
+
+    // Re-beregn max-height hvis innholdet endrer seg (font-load etc.)
+    new ResizeObserver(() => {
+      if (item.classList.contains('is-open')) {
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+      }
+    }).observe(panel);
+  });
+});
+</script>
+
+  
 </body>
 </html>
